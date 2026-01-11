@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FF UID Info</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+  background:#0f0f0f;
+  color:white;
+  font-family:Arial;
+  text-align:center;
+  margin:0;
+}
+.container{padding:20px;}
+h1{color:#00ff9c;}
+.box{
+  background:#1b1b1b;
+  padding:15px;
+  border-radius:12px;
+  margin-top:15px;
+}
+input,button{
+  width:90%;
+  max-width:300px;
+  padding:12px;
+  margin-top:10px;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+}
+button{background:#00ff9c;}
+.info{
+  display:none;
+  text-align:left;
+}
+.row{
+  display:flex;
+  justify-content:space-between;
+  border-bottom:1px solid #333;
+  padding:6px 0;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+<h1>🔥 FF UID TOOL</h1>
+
+<div class="box">
+  <input id="uid" placeholder="Enter FF UID">
+  <button onclick="getInfo()">Check Player Info</button>
+</div>
+
+<div class="box info" id="info">
+  <h3>🎮 Player Info</h3>
+  <div class="row"><span>Name</span><span id="name"></span></div>
+  <div class="row"><span>UID</span><span id="uidshow"></span></div>
+  <div class="row"><span>Level</span><span id="level"></span></div>
+  <div class="row"><span>Likes</span><span id="likes"></span></div>
+</div>
+
+</div>
+
+<script>
+function getInfo(){
+  var uid = document.getElementById("uid").value;
+
+  if(uid === "" || uid.length < 6){
+    alert("Valid UID dalo");
+    return;
+  }
+
+  document.getElementById("info").style.display = "block";
+  document.getElementById("uidshow").innerText = uid;
+  document.getElementById("name").innerText = "FF_Player_" + uid.slice(-3);
+  document.getElementById("level").innerText = Math.floor(Math.random()*80)+1;
+  document.getElementById("likes").innerText = Math.floor(Math.random()*50000);
+}
+</script>
+
+</body>
+</html>
