@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FF UID Info Pro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  background:#0b0b0b;
+  font-family:Arial;
+  color:#fff;
+}
+.container{
+  padding:20px;
+  text-align:center;
+}
+h1{
+  color:#00ff9c;
+}
+input{
+  width:90%;
+  max-width:320px;
+  padding:12px;
+  font-size:16px;
+  border-radius:10px;
+  border:none;
+  outline:none;
+}
+button{
+  margin-top:15px;
+  padding:12px 30px;
+  font-size:16px;
+  border:none;
+  border-radius:10px;
+  background:#00ff9c;
+  cursor:pointer;
+}
+.loading{
+  display:none;
+  margin-top:20px;
+}
+.loader{
+  width:40px;
+  height:40px;
+  border:4px solid #333;
+  border-top:4px solid #00ff9c;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+  margin:auto;
+}
+@keyframes spin{
+  100%{transform:rotate(360deg);}
+}
+.card{
+  display:none;
+  margin-top:20px;
+  background:#161616;
+  border-radius:15px;
+  padding:15px;
+}
+.profile{
+  width:90px;
+  height:90px;
+  border-radius:50%;
+  border:3px solid #00ff9c;
+}
+.rank{
+  margin-top:8px;
+  font-weight:bold;
+  color:gold;
+}
+.row{
+  display:flex;
+  justify-content:space-between;
+  padding:6px 0;
+  border-bottom:1px solid #333;
+}
+.footer{
+  margin-top:25px;
+  font-size:12px;
+  color:#777;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+<h1>🔥 FF UID INFO PRO</h1>
+
+<input type="number" id="uid" placeholder="Enter FF UID">
+<br>
+<button onclick="getInfo()">Check</button>
+
+<div class="loading" id="loading">
+  <div class="loader"></div>
+  <p>Fetching player data...</p>
+</div>
+
+<div class="card" id="card">
+  <img src="https://i.imgur.com/4ZQZ4ZK.png" class="profile">
+  <div class="rank" id="rank"></div>
+
+  <div class="row"><span>Name</span><span id="name"></span></div>
+  <div class="row"><span>UID</span><span id="uidshow"></span></div>
+  <div class="row"><span>Level</span><span id="level"></span></div>
+  <div class="row"><span>Likes</span><span id="likes"></span></div>
+  <div class="row"><span>Visitors</span><span id="visitors"></span></div>
+  <div class="row"><span>Account Created</span><span id="created"></span></div>
+  <div class="row"><span>Last Login</span><span id="lastlogin"></span></div>
+</div>
+
+<div class="footer">
+⚠️ Demo FF Tool • Not Official Garena API
+</div>
+
+</div>
+
+<script>
+function getInfo(){
+  let uid = document.getElementById("uid").value;
+  if(uid.length < 6){
+    alert("Enter valid UID");
+    return;
+  }
+
+  document.getElementById("card").style.display="none";
+  document.getElementById("loading").style.display="block";
+
+  setTimeout(()=>{
+    document.getElementById("loading").style.display="none";
+    document.getElementById("card").style.display="block";
+
+    document.getElementById("uidshow").innerText = uid;
+    document.getElementById("name").innerText = "FF_Player_" + uid.slice(-3);
+    document.getElementById("level").innerText = Math.floor(Math.random()*80)+1;
+    document.getElementById("likes").innerText = Math.floor(Math.random()*50000);
+    document.getElementById("visitors").innerText = Math.floor(Math.random()*200000);
+    document.getElementById("created").innerText = "2019";
+    document.getElementById("lastlogin").innerText = "2 hours ago";
+
+    let ranks = ["Bronze","Silver","Gold","Platinum","Diamond","Heroic"];
+    document.getElementById("rank").innerText =
+      "Rank: " + ranks[Math.floor(Math.random()*ranks.length)];
+
+  },1500);
+}
+</script>
+
+</body>
+</html>
